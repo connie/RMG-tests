@@ -80,7 +80,7 @@ def check(name, chemkin, speciesDict):
     speciesDictOrig = os.path.join(folder,filename_spcDict)
 
     kwargs = {
-        'wd': os.getcwd()
+        'wd': os.getcwd(),
         'web': True,
         }
 
