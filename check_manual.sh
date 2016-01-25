@@ -16,16 +16,20 @@ echo 'Location of RMG-Py home directory: '$RMGPy
 echo 'Target: ' $target
 
 cd $RMGPy >/dev/null
-echo 'RMG-Py Git Branch: ' git branch
+echo 'RMG-Py Git Branch: ' 
+/usr/bin/git branch
 
-echo 'Latest RMG-Py Git Commit: ' git log -n 1
+echo 'Latest RMG-Py Git Commit: ' 
+/usr/bin/git log -n 1
 
 
 echo 'Location of the RMG-database: ' $RMGDatabase
 
 cd $RMGDatabase >/dev/null
-echo 'RMG-database Git Branch: ' git branch
-echo 'Latest RMG-database Git Commit: ' git commit
+echo 'RMG-database Git Branch: ' 
+/usr/bin/git branch
+echo 'Latest RMG-database Git Commit: ' 
+/usr/bin/git commit
 
 
 
