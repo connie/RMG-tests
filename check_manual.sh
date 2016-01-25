@@ -45,6 +45,12 @@ cd $DIFF_DIR
 mkdir $target
 cd $target
 
+# Copy the files over to this folder
+cp $SOURCE_FOLDER/chem_annotated.inp .
+cp $SOURCE_FOLDER/species_dictionary.txt .
+cp $SOURCE_FOLDER/chem_edge_annotated.inp .
+cp $SOURCE_FOLDER/species_edge_dictionary.txt .
+
 # check generated models:
 # core:
 python $TESTS_DIR/checkModels.py $target $SOURCE_FOLDER/chem_annotated.inp $SOURCE_FOLDER/species_dictionary.txt
