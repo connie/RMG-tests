@@ -1,22 +1,27 @@
 import sys
 import os.path
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+from rmgpy.tools.regressiveTest import ObservablesTestCase
+from rmgpy.quantity import Quantity
 
-from regressiveTest import ObservablesTestCase
 
+# Conditions
+reactorType = 'IdealGasReactor'
 molFracList=[{'CC': 0.05, '[Ar]': 0.95}]
-Plist=[278643.8]
-Tlist=range(1100,1300,100)
-terminationTime = 5e-5
-conditions=rt.generateAllConditions("IdealGasReactor", terminationTime, molFracList, Tlist, Plist)
+Plist=Quantity([278643.8],'Pa')
+Tlist=Quantity([1100,1200,1300],'K')
+terminationTime = Quantity(5e-5,'s')
 
-majorSpeciesSmiles=['CC', 'C=C', 'C#C','C', '[CH3]', 'C[CH2]', '[H]', '[H][H]', 'C=[CH]', 'CC[CH2]', 'Ar']
+# Create observables test case and compare the old and new models
 
-A=rt.ObservablesTestCase("Ethane Pyrolysis (Minimal)", "regression/egA",
-                    "regression/egB", conditions, exptData=None)
-A.generateConditions("IdealGasReactor", terminationTime, molFracList, Tlist=Tlist, Plist=Plist)
+minimal = ObservablesTestCase(title = 'Ethane Pyrolysis',
+                              oldDir = 'old',
+                              newDir = 'new')
 
+minimal.generateConditions(reactorType = reactorType,
+                           reactionTime = terminationTime,
+                           molFracList = molFracList,
+                           Tlist = Tlist,
+                           Plist = Plist)
 
-print A
-A.compare(True)
+print minimal
+minimal.compare(plot = True)
